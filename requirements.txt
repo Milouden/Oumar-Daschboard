@@ -1,0 +1,6 @@
+Flask
+joblib
+lightgbm
+jsons
+pandas
+gunicorn
