@@ -40,7 +40,7 @@ st.text("les informations relatives à un client ou un groupe de clients :")
 
 @st.cache
 def load_data ():
-    data = pd.read_csv('app_test.csv')
+    data = pd.read_parquet('app_test.parquet')
     data.drop(columns = {'Unnamed: 0'}  , inplace = True)
     data = data.replace([np.inf, -np.inf], np.nan)
     data.fillna(0, inplace=True)
