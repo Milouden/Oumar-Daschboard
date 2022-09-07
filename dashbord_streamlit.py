@@ -16,9 +16,6 @@ from custtransformer import CustTransformer
 from dashboard_functions import plot_boxplot_var_by_target
 from dashboard_functions import plot_scatter_projection
 
-
-
-
 # Configuration de la page streamlit
 st.set_page_config(page_title='Tableau de bord de notation des clients demandeurs de prêts :',
                        page_icon='random',
@@ -183,7 +180,61 @@ def main():
         exp_value_trans = content['exp_val_trans']
         X_neigh_ = pd.DataFrame(content['X_neigh_'])
         return shap_val_df, shap_val_trans, exp_value, exp_value_trans, X_neigh_
-    
+  
+
+
+
+        with st.sidebar:
+        ## st.header(" Prêt à dépenser")
+        st.write("## Identificateur du Client")
+        #st.write("**ID Client est  :**", id_client)
+        id_list = df["SK_ID_CURR"].tolist()
+        # id_client = st.number_input("Sélectionner l'identifiant du client" , step = 1 , value = 100001 )
+        id_client = st.number_input(" " , step = 1 , value = 100001 )
+        # id_client = st.selectbox(
+         #    "Sélectionner l'identifiant du client", id_list)
+
+        st.write("## Choisir une opération")
+        #st.write("**ID Client est  :**", id_client)
+        # .sidebar.radio
+        #    ------------------------------------------------------------------------
+        #    ------------------------------------------------------------------------        
+        show_client_details = st.checkbox("Informations fondamentales du client" , value = False)
+        ##show_client_suplemntaryinfo = st.checkbox("les informations supplémentaires")
+        show_credit_decision = st.checkbox("Décision de crédit")
+        #show_credit_model = st.checkbox("Modèle de décision")
+        #Evaluation_metric = st.checkbox("Métriques d'évaluation")
+        show_metric_model = st.checkbox("Etude comparative Aux autres Clients")
+
+
+        if (show_metric_model):
+            st.header('‍👀 Comparaison aux autres clients')
+            #st.subheader("Comparaison avec l'ensemble des clients")
+            with st.expander("🔍 Explication de la comparaison faite"):
+                st.write("Lorsqu'une variable est sélectionnée, un graphique montrant la distribution de cette variable selon la classe (remboursé ou défaillant) sur l'ensemble des clients (dont on connait l'état de remboursement de crédit) est affiché avec une matérialisation du positionnement du client actuel.") 
+
+            with st.spinner('Chargement de la comparaison liée à la variable sélectionnée'):
+                var = st.selectbox("Sélectionner une variable",\
+                                   list(personal_info_cols.values()))
+                feature = list(personal_info_cols.keys())\
+                [list(personal_info_cols.values()).index(var)]    
+
+                if (feature in numerical_features):                
+                    plot_distribution(data_train, feature, client_info[feature], var)   
+                elif (feature in rotate_label):
+                    univariate_categorical(data_train, feature, \
+                                           client_info[feature], var, False, True)
+                elif (feature in horizontal_layout):
+                    univariate_categorical(data_train, feature, \
+                                           client_info[feature], var, False, True, True)
+                else:
+                    univariate_categorical(data_train, feature, client_info[feature], var)
+
+        #-------------------------------------------------------
+        # Comparer le client sélectionné à d'autres clients
+        #-------------------------------------------------------        
+        
+
 
 if __name__ == '__main__':
     main()
