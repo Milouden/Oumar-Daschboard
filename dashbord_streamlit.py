@@ -186,22 +186,22 @@ def main():
 
         with st.sidebar:
             ## st.header(" Prêt à dépenser")
-            #st.write("## Identificateur du Client")
+            st.write("## Identificateur du Client")
             #st.write("**ID Client est  :**", id_client)
-            #id_list = df["SK_ID_CURR"].tolist()
+            id_list = df["SK_ID_CURR"].tolist()
             # id_client = st.number_input("Sélectionner l'identifiant du client" , step = 1 , value = 100001 )
-            #id_client = st.number_input(" " , step = 1 , value = 100001 )
+            id_client = st.number_input(" " , step = 1 , value = 100001 )
             # id_client = st.selectbox(
              #    "Sélectionner l'identifiant du client", id_list)
 
-            #st.write("## Choisir une opération")
+            st.write("## Choisir une opération")
             #st.write("**ID Client est  :**", id_client)
             # .sidebar.radio
             #    ------------------------------------------------------------------------
             #    ------------------------------------------------------------------------        
-            #show_client_details = st.checkbox("Informations fondamentales du client" , value = False)
+            show_client_details = st.checkbox("Informations fondamentales du client" , value = False)
             ##show_client_suplemntaryinfo = st.checkbox("les informations supplémentaires")
-            #show_credit_decision = st.checkbox("Décision de crédit")
+            show_credit_decision = st.checkbox("Décision de crédit")
             #show_credit_model = st.checkbox("Modèle de décision")
             #Evaluation_metric = st.checkbox("Métriques d'évaluation")
             show_metric_model = st.checkbox("Etude comparative Aux autres Clients")
