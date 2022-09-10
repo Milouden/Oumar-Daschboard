@@ -48,7 +48,7 @@ def load_data (nrows):
     return data
 
 data_load = st.text('Chargement des données...')
-data = load_data() 
+data = load_data(10) 
 # 50
 #st.write(data.head(5))
 
