@@ -41,7 +41,7 @@ st.subheader('Implémentez un modèle de scoring')
 
 @st.cache
 def load_data (nrows):
-    data = pd.read_csv('app_test.csv', nrows=nrows)
+    data = pd.read_csv('app_test.parquet', nrows=nrows)
     data.drop(columns = {'Unnamed: 0'}  , inplace = True)
     data = data.replace([np.inf, -np.inf], np.nan)
     data.fillna(0, inplace=True)
