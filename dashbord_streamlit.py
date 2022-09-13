@@ -77,22 +77,22 @@ def main() :
     def load_data():
         PATH = 'dataset/'
         #données test après feature engeniering
-        df = pd.read_parquet(PATH+'test_df.parquet')
+        df = pd.read_parquet('test_df.parquet')
         
         #données test avant feature engeniering
-        data_test = pd.read_parquet(PATH+'application_test.parquet')
+        data_test = pd.read_parquet('application_test.parquet')
         
         #données train avant feature engeniering
-        data_train = pd.read_parquet(PATH+'application_train.parquet')
+        data_train = pd.read_parquet('application_train.parquet')
         
         #données test avant feature engeniering
-        X_test = pd.read_csv(PATH+'X_test.parquet',encoding="ISO-8859-1", on_bad_lines='skip',lineterminator='\n')
+        X_test = pd.read_csv('X_test.parquet',encoding="ISO-8859-1", on_bad_lines='skip',lineterminator='\n')
         
         #données train avant feature engeniering
-        y_test = pd.read_csv(PATH+'y_test.csv')        
+        y_test = pd.read_csv('y_test.csv')        
         
         #description des features
-        description = pd.read_csv(PATH+'HomeCredit_columns_description.csv', 
+        description = pd.read_csv('HomeCredit_columns_description.csv', 
                                       usecols=['Row', 'Description'], \
                                   index_col=0, encoding='unicode_escape')
 
