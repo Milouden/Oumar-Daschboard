@@ -13,6 +13,21 @@ from urllib.request import urlopen
 import json
 import requests
 import plotly.graph_objects as go 
+import streamlit as st
+from PIL import Image
+import requests
+import json
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sys
+import os
+import shap
+import time
+from custtransformer import CustTransformer
+from dashboard_functions import plot_boxplot_var_by_target
+from dashboard_functions import plot_scatter_projection
 
 from sklearn.neighbors import NearestNeighbors
 from sklearn.neighbors import KNeighborsClassifier
@@ -31,6 +46,8 @@ st.set_page_config(page_title='Tableau de bord de notation des clients demandeur
 #################################
 #################################
 #################################
+
+
 # Affichage du titre
 st.title('Tableau de bord de notation des demandeurs de prêts :')
 st.header("Oumar Gueye - Data Scientist - OC - project 7")
