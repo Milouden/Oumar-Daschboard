@@ -80,10 +80,10 @@ def main() :
         df = pd.read_parquet('test_df.parquet')
         
         #données test avant feature engeniering
-        data_test = pd.read_parquet('application_test.parquet')
+        data_test = pd.read_parquet('app_test.parquet')
         
         #données train avant feature engeniering
-        data_train = pd.read_parquet('application_train.parquet')
+        data_train = pd.read_parquet('app_train.parquet')
         
         #données test avant feature engeniering
         X_test = pd.read_csv('X_test.parquet',encoding="ISO-8859-1", on_bad_lines='skip',lineterminator='\n')
@@ -100,11 +100,6 @@ def main() :
     
 ###########################################################################################################################################
 ###########################################################################################################################################
-
-
-                      
-
-########################################################################################################################################### 
     @st.cache
     def load_model():
         '''loading the trained model'''
@@ -534,20 +529,6 @@ def main() :
             #     ## dataframe = dataframe.T
             #     st.dataframe(client_info)
 
-            
-            
-            
-            
-            
-            
-            
-
-            
-            
-        
-            
-            
-            
 ###########################################################################################################################################
 ###########################################################################################################################################
 ###########################################################################################################################################
@@ -579,29 +560,14 @@ def main() :
             #st.area_chart(df_sample2 )##############################
             ##########################################################################################
             #Appel de l'API : 
-
+            API_url = "https://oumaar-application-programming.herokuapp.com/credit/"+ str(id_client)
             #API_url = "http://127.0.0.1:5000/credit/" + str(id_client)
-            #API_url = "https://heroku-api-model-scoring-ds.herokuapp.com/credit/"+ str(id_client)
-            API_url = "https://mihoubi-api-csm.herokuapp.com/credit/"+ str(id_client)
-            
-            
-            #API_url = "https://heroku-api-model-scoring-ds.herokuapp.com/prediction_credit"+ str(id_client)
-            #API_url = "http://127.0.0.1:5000/credit/" + str(id_client)
-            ##API_url = "https://milouden-api-scoring-model-app-rklb1w.streamlitapp.com/prediction_credit" + str(id_client)  # credit/"
-           
-            
-            
             with st.spinner('Chargement du score du client...'):
                 json_url = urlopen(API_url)
-
                 API_data = json.loads(json_url.read())
                 classe_predite = API_data['prediction']
-                
-
                 proba = 1-API_data['proba']
                 client_score = round(proba*100, 2)
-            
-            
                 figure = go.Figure(go.Indicator(
                     mode = "gauge+number+delta",
                     title = {'text': 'Taux de risque de défaut'},
@@ -956,23 +922,3 @@ if __name__ == '__main__':
 ###########################################################################################################################################
 ###########################################################################################################################################
 ###########################################################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
